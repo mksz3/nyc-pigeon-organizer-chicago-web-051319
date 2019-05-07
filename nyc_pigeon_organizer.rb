@@ -3,7 +3,16 @@ def nyc_pigeon_organizer(data)
   data.each { |attribute, qualities|
     qualities.each { |quality, birds|
       birds.each { |bird|
-        output[bird] == nil ? output[bird] = {} : output[bird][attribute] ? output[bird][attribute] << quality : output[bird][attribute] = [quality.to_s]  
+        # output[bird] == nil ? output[bird] = {} : output[bird][attribute] ? output[bird][attribute] << quality.to_s : output[bird][attribute] = [quality.to_s] 
+        if output[bird] == nil #if bird doesbt already exist in object
+          output[bird] = {}
+        end
+        if output[bird][attribute] #if bird's color/gender/home exists
+          output[bird][attribute] << quality.to_s # add birds "" to array
+        else
+          output[bird][attribute] = [quality.to_s] # create array to hold qualities
+        end
+
       }
     }
   }
